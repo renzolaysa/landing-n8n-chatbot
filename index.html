@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Asistente n8n para automatización</title>
+  <meta name="description" content="Landing page con chatbot n8n para extracción de CV, registro en Google Sheets y envío automático de promomails con Gmail.">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="container nav" aria-label="Principal">
+      <a class="brand" href="#inicio"><span class="brand-mark">n8n</span><span>Automatiza.pe</span></a>
+      <div class="nav-links">
+        <a href="#servicios">Servicios</a>
+        <a href="#flujo">Flujo</a>
+        <a href="#campos">Campos CV</a>
+        <a href="#configuracion">Configuración</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="inicio">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <p class="eyebrow">Landing page con chatbot integrado en n8n</p>
+          <h1>Automatización para CVs, consultas y promomails</h1>
+          <p class="hero-copy">Este proyecto demuestra una integración pública entre una página web, formularios n8n, un agente conversacional y servicios de Google para registrar datos y enviar información automáticamente.</p>
+          <div class="hero-actions">
+            <a id="promoFormLink" class="button primary" href="#configuracion">Solicitar información</a>
+            <a id="cvFormLink" class="button secondary" href="#configuracion">Enviar CV</a>
+            <a class="button ghost" href="#chatbot">Probar chatbot</a>
+          </div>
+        </div>
+        <aside id="chatbot" class="chat-panel" aria-label="Chatbot del proyecto">
+          <div class="chat-panel-header">
+            <strong>Asistente virtual</strong>
+            <span id="chatStatus" class="status">Cargando estado</span>
+          </div>
+          <div id="n8n-chat"></div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="servicios">
+      <div class="container">
+        <div class="section-title">
+          <h2>Qué automatiza el proyecto</h2>
+          <p>Los flujos están separados para que cada parte pueda probarse, activarse y mantenerse sin mezclar credenciales.</p>
+        </div>
+        <div class="grid">
+          <article class="card">
+            <h3>Extracción de CV</h3>
+            <p>El usuario sube un PDF, n8n extrae el texto, un agente identifica ocho campos clave y Google Sheets registra una fila.</p>
+          </article>
+          <article class="card">
+            <h3>Promomail automático</h3>
+            <p>Un formulario recoge correo y tema de interés. Gmail envía en automático el contenido solicitado con HTML personalizado.</p>
+          </article>
+          <article class="card">
+            <h3>Chatbot público</h3>
+            <p>La página carga el widget de chat de n8n y conversa con un agente que explica servicios, formularios y próximos pasos.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="flujo">
+      <div class="container">
+        <div class="section-title">
+          <h2>Flujo de atención</h2>
+          <p>La navegación principal queda visible desde el primer pantallazo y el chatbot se integra como parte usable de la landing.</p>
+        </div>
+        <div class="steps">
+          <article class="card"><div class="step-number">1</div><h3>Visitante</h3><p>Ingresa desde GitHub Pages, revisa la propuesta y abre el chat o un formulario.</p></article>
+          <article class="card"><div class="step-number">2</div><h3>n8n</h3><p>Recibe el mensaje o registro mediante Chat Trigger y Form Trigger.</p></article>
+          <article class="card"><div class="step-number">3</div><h3>Agente</h3><p>Responde consultas o extrae datos del CV con reglas claras y campos definidos.</p></article>
+          <article class="card"><div class="step-number">4</div><h3>Google</h3><p>Sheets almacena datos de CV y Gmail envía el promomail solicitado.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="campos">
+      <div class="container">
+        <div class="section-title">
+          <h2>Ocho campos del CV</h2>
+          <p>La hoja de cálculo guarda únicamente la información esencial para revisar candidatos.</p>
+        </div>
+        <table class="fields-table">
+          <thead><tr><th>Campo</th><th>Descripción</th></tr></thead>
+          <tbody>
+            <tr><td>nombre_completo</td><td>Nombre y apellidos indicados en el CV.</td></tr>
+            <tr><td>correo_electronico</td><td>Correo de contacto explícito y validado.</td></tr>
+            <tr><td>telefono</td><td>Teléfono como texto, conservando prefijos.</td></tr>
+            <tr><td>ubicacion</td><td>Ciudad, región o país indicado.</td></tr>
+            <tr><td>perfil_profesional</td><td>Resumen breve del perfil o profesión.</td></tr>
+            <tr><td>formacion_academica</td><td>Estudios, institución y fechas relevantes.</td></tr>
+            <tr><td>experiencia_laboral</td><td>Cargos, empleadores, fechas y funciones.</td></tr>
+            <tr><td>habilidades</td><td>Herramientas, conocimientos, idiomas y capacidades.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="configuracion">
+      <div class="container split">
+        <div>
+          <div class="section-title">
+            <h2>Conexión final</h2>
+            <p>Cuando los workflows estén activos, se reemplazan las tres URLs en el archivo de configuración. No se colocan credenciales en la web.</p>
+          </div>
+          <div class="hero-actions">
+            <a id="footerPromoLink" class="button primary" href="#configuracion">Formulario promomail</a>
+            <a id="footerCvLink" class="button secondary" href="#configuracion">Formulario CV</a>
+          </div>
+        </div>
+        <div class="config-box" aria-label="Ejemplo de configuración">
+          <code>window.PROJECT_CONFIG = {
+  N8N_CHAT_WEBHOOK_URL: "https://tu-n8n/webhook/...",
+  CV_FORM_URL: "https://tu-n8n/form/registro-cv",
+  PROMO_FORM_URL: "https://tu-n8n/form/solicitar-informacion"
+};</code>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-row">
+      <span>Proyecto académico n8n + GitHub Pages · <span id="year"></span></span>
+      <span><a href="#inicio">Inicio</a><a href="#chatbot">Chatbot</a></span>
+    </div>
+  </footer>
+  <script src="assets/config.js"></script>
+  <script type="module" src="assets/main.js"></script>
+</body>
+</html>
