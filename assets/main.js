@@ -31,7 +31,7 @@ if (isReady(config.N8N_CHAT_WEBHOOK_URL)) {
     .then(({ createChat }) => {
       createChat({
         webhookUrl: config.N8N_CHAT_WEBHOOK_URL,
-        mode: "window",
+        mode: "fullscreen",
         target: "#n8n-chat",
         showWelcomeScreen: false,
         initialMessages: [
